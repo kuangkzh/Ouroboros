@@ -1,0 +1,12 @@
+<?python
+import operator
+def call_func():
+    global cur_text
+    if gets.__contains__('params'):
+        func = operator.methodcaller(gets['func'][0], *json.loads(gets['params'][0]))
+    else:
+        func = operator.methodcaller(gets['func'][0])
+    cur_text += func(AjaxMapper)
+?>
+
+<?python call_func()?>

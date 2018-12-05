@@ -1,0 +1,28 @@
+﻿<html>
+<head>
+    <meta charset="gb2312">
+    <script type="text/javascript" src="ajax_map.js"></script>
+</head>
+<body>
+
+<div id="myDiv"><h2>Let AJAX change this text</h2></div>
+<!--调用ajax_caller需要给出函数名，回调函数，参数列表。其中回调函数必须接受一个字符串参数，表示接受到服务器反馈的字符串后的行为。
+参数列表可空，如果需要，用列表给出。-->
+<script type="text/javascript">
+    function func1_callback(s) {
+        document.getElementById('myDiv').innerHTML=s;
+    }
+    function func2_callback(s) {
+        obj = JSON.parse(s);
+        for(var i=0;i<4;i++){
+        document.getElementById('myDiv').innerHTML+=obj.a[i]+'\n';
+        }
+        document.getElementById('myDiv').innerHTML+=obj.b;
+    }
+</script>
+<button type="button" onclick="ajax_caller('test_func',func1_callback)">Change by AJAX test_func</button>
+<button type="button" onclick="ajax_caller('test_json',func2_callback)">Change by AJAX test_json</button>
+<button type="button" onclick="ajax_caller('test_params',func1_callback,[10086,10010])">Change by AJAX test_params</button>
+<?python echo(str(1==1))?>
+</body>
+</html>

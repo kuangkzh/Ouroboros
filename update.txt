@@ -1,0 +1,37 @@
+﻿-v2.3.1
+新增config中的ENCODING字段，可设置网页文件编码。
+
+-v2.3
+新增全局变量global_variables，是一个全局的字典变量。
+只需在程序中使用global global_variables，即可获取，并能在字典中自定义变量。
+
+-v2.2
+恢复了对v1系列版本中，对"cur_text += "操作的支持，使得v1系列版本代码可直接移植。
+新版本中，cur_text改为EchoText类的对象，并重载了__add__函数，其成员变量cur_text.str等价于v1系列版本中的cur_text。
+新增对内联python代码通过相对路径import自定义库的支持。
+改请求headers的键名为全部小写。
+新增对内联python代码执行异常的traceback输出。
+
+-v2.1
+修复了修改默认目录后错误页面不能正常访问的bug
+修复了linux下默认路径无法正常调整的bug
+将所有的变量配置转移到了config.py中：
+·可通过PORT配置服务器开启的端口
+·可通过DEFAULT_ROOT修改网页默认目录
+·可通过PAGE_404等修改默认错误页面的文件地址，该地址是从DEFAULT_ROOT文件夹下开始的相对地址
+
+-v2.0
+重构了服务器代码
+新增功能：
+·在URLFile.py里，可指定默认网页目录
+·在URLFile.py里，可指定404、403等错误页面地址
+·在内联python代码里，可使用echo(s)函数，在当前内联位置输出文本s
+·在内联python代码里，新增send_response(x)函数，返回HTTP状态码x，多次返回状态码仅最后一次有效
+·在内联python代码里，新增send_header(key, value)函数，自定义返回header，key重复时仅最后一次有效
+
+-v1.3
+修复了python代码运行异常时，运行目录无法换回根目录的问题
+
+-v1.2
+改python代码的运行目录为py文件所在地址
+在内联python代码里新增session变量，用于区分不同用户，并可存放用户变量。
